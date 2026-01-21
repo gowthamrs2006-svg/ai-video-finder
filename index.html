@@ -1,29 +1,64 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>AI Video Finder</title>
+    <meta charset="UTF-8">
+    <title>AI Video Finder</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #0f172a;
+            color: white;
+            text-align: center;
+            padding-top: 100px;
+        }
+        input {
+            width: 300px;
+            padding: 12px;
+            font-size: 16px;
+            border-radius: 6px;
+            border: none;
+        }
+        button {
+            padding: 12px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 6px;
+            margin-left: 10px;
+            cursor: pointer;
+            background: #22c55e;
+        }
+        button:hover {
+            background: #16a34a;
+        }
+        p {
+            margin-top: 20px;
+            color: #cbd5f5;
+        }
+    </style>
 </head>
 <body>
 
-  <h1>AI Video Finder</h1>
+    <h1>AI Video Finder</h1>
+    <p>Type any word or name. AI will find related videos from entire web.</p>
 
-  <input id="q" type="text" placeholder="Enter any word">
-  <br><br>
-  <button onclick="search()">Search Video</button>
+    <input type="text" id="query" placeholder="Example: Leo movie, maths class">
+    <button onclick="findVideo()">Find Videos</button>
 
-  <script>
-    function search() {
-      const q = document.getElementById("q").value;
+    <script>
+        function findVideo() {
+            let q = document.getElementById("query").value;
+            if (q.trim() === "") {
+                alert("Type something");
+                return;
+            }
 
-      if (q === "") {
-        alert("Enter a word");
-        return;
-      }
+            let url = "https://www.google.com/search?q=" +
+                      encodeURIComponent(q + " video") +
+                      "&tbm=vid";
 
-      const url = "https://www.google.com/search?q=" + q + "+video";
-      window.open(url, "_blank");
-    }
-  </script>
+            window.open(url, "_blank");
+        }
+    </script>
 
 </body>
 </html>
