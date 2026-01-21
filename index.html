@@ -1,78 +1,86 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>GM Video Finder AI</title>
+<meta charset="UTF-8">
+<title>GM Video Finder AI</title>
 
-    <meta name="description" content="GM Video Finder AI helps you find all kinds of videos like movies, songs, educational and more using a single word search.">
-    <meta name="keywords" content="GM Video Finder AI, video finder ai, movie video finder, song video finder, search videos online">
-    <meta name="author" content="GM">
+<meta name="description" content="GM Video Finder AI helps you find videos from YouTube, Google, Instagram, Facebook, ShareChat, Hotstar and more using one word.">
+<meta name="author" content="GM">
 
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            text-align: center;
-            padding: 40px;
-        }
-        input {
-            width: 300px;
-            padding: 10px;
-            font-size: 16px;
-        }
-        button {
-            padding: 10px 15px;
-            font-size: 16px;
-            cursor: pointer;
-        }
-        #results {
-            margin-top: 20px;
-        }
-        a {
-            display: block;
-            margin: 8px 0;
-            color: blue;
-            text-decoration: none;
-        }
-    </style>
+<style>
+body{
+    font-family: Arial, sans-serif;
+    background:#f4f4f4;
+    text-align:center;
+    padding:40px;
+}
+input{
+    width:300px;
+    padding:10px;
+    font-size:16px;
+}
+button{
+    padding:10px 16px;
+    font-size:16px;
+    cursor:pointer;
+}
+#results{
+    margin-top:25px;
+}
+a{
+    display:block;
+    margin:8px 0;
+    color:#0066cc;
+    text-decoration:none;
+}
+a:hover{
+    text-decoration:underline;
+}
+</style>
 </head>
+
 <body>
 
-    <h1>GM Video Finder AI</h1>
-    <p>Type one word and find related videos from the web</p>
+<h1>GM Video Finder AI</h1>
+<p>Type one word and find related videos across the web</p>
 
-    <input type="text" id="query" placeholder="Enter any word">
-    <button onclick="search()">Search</button>
+<input id="query" placeholder="Example: thalapathy"
+       autocomplete="off">
+<button onclick="search()">Search</button>
 
-    <div id="results"></div>
+<div id="results"></div>
 
-    <script>
-        function search() {
-            const q = document.getElementById("query").value.trim();
-            if (q === "") {
-                alert("Please enter a word");
-                return;
-            }
+<script>
+function search(){
+    const q = document.getElementById("query").value.trim();
+    if(q === ""){
+        alert("Please enter a word");
+        return;
+    }
 
-            const results = document.getElementById("results");
-            results.innerHTML = "";
+    const e = encodeURIComponent(q);
+    const results = document.getElementById("results");
+    results.innerHTML = "<h3>Results for \"" + q + "\"</h3>";
 
-            const sites = [
-                "https://www.youtube.com/results?search_query=",
-                "https://www.google.com/search?q=",
-                "https://vimeo.com/search?q="
-            ];
+    const sites = [
+        { name:"YouTube", link:`https://www.youtube.com/results?search_query=${e}` },
+        { name:"Google Videos", link:`https://www.google.com/search?tbm=vid&q=${e}` },
+        { name:"Vimeo", link:`https://vimeo.com/search?q=${e}` },
+        { name:"Instagram", link:`https://www.instagram.com/explore/tags/${e}/` },
+        { name:"Facebook Videos", link:`https://www.facebook.com/watch/search/?q=${e}` },
+        { name:"ShareChat", link:`https://sharechat.com/search?q=${e}` },
+        { name:"Hotstar", link:`https://www.hotstar.com/in/search?q=${e}` }
+    ];
 
-            sites.forEach(site => {
-                const link = site + encodeURIComponent(q + " video");
-                const a = document.createElement("a");
-                a.href = link;
-                a.target = "_blank";
-                a.textContent = link;
-                results.appendChild(a);
-            });
-        }
-    </script>
+    sites.forEach(site=>{
+        const a = document.createElement("a");
+        a.href = site.link;
+        a.target = "_blank";
+        a.textContent = site.name;
+        results.appendChild(a);
+    });
+}
+</script>
 
 </body>
 </html>
