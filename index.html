@@ -4,35 +4,26 @@
   <title>AI Video Finder</title>
 </head>
 <body>
+
   <h1>AI Video Finder</h1>
 
   <input id="q" type="text" placeholder="Enter any word">
-  <button onclick="search()">Search</button>
-
-  <ul id="results"></ul>
+  <br><br>
+  <button onclick="search()">Search Video</button>
 
   <script>
     function search() {
       const q = document.getElementById("q").value;
-      const results = document.getElementById("results");
-      results.innerHTML = "";
 
-      const sites = [
-        "https://www.google.com/search?q=",
-        "https://www.youtube.com/results?search_query=",
-        "https://vimeo.com/search?q="
-      ];
+      if (q === "") {
+        alert("Enter a word");
+        return;
+      }
 
-      sites.forEach(site => {
-        const li = document.createElement("li");
-        const a = document.createElement("a");
-        a.href = site + encodeURIComponent(q);
-        a.target = "_blank";
-        a.innerText = site + q;
-        li.appendChild(a);
-        results.appendChild(li);
-      });
+      const url = "https://www.google.com/search?q=" + q + "+video";
+      window.open(url, "_blank");
     }
   </script>
+
 </body>
 </html>
