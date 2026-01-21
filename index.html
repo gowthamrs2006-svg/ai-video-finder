@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 
-<!-- Google Search Console verification -->
-<meta name="google-site-verification" content="ZXgZ5Lb3gyZdngj" />
+<!-- Google Search Console verification (FIXED) -->
+<meta name="google-site-verification" content="ZxgZ5Lb3gyZdngj" />
 
 <title>GM Video Finder AI</title>
 
@@ -68,19 +68,19 @@ function search(){
     r.innerHTML = "";
 
     const sites = [
-        ["YouTube", `https://www.youtube.com/results?search_query=${e}`],
-        ["Google Videos", `https://www.google.com/search?tbm=vid&q=${e}`],
-        ["Vimeo", `https://vimeo.com/search?q=${e}`],
-        ["Instagram", `https://www.instagram.com/explore/tags/${e}/`],
-        ["Facebook", `https://www.facebook.com/watch/search/?q=${e}`],
-        ["ShareChat", `https://sharechat.com/search?q=${e}`],
-        ["Hotstar", `https://www.hotstar.com/in/search?q=${e}`]
+        ["YouTube", "https://www.youtube.com/results?search_query=" + e],
+        ["Google Videos", "https://www.google.com/search?tbm=vid&q=" + e],
+        ["Vimeo", "https://vimeo.com/search?q=" + e],
+        ["Instagram", "https://www.instagram.com/explore/tags/" + e + "/"],
+        ["Facebook", "https://www.facebook.com/watch/search/?q=" + e],
+        ["ShareChat", "https://sharechat.com/search?q=" + e],
+        ["Hotstar", "https://www.hotstar.com/in/search?q=" + e]
     ];
 
-    sites.forEach(s=>{
+    sites.forEach(function(site){
         const a = document.createElement("a");
-        a.href = s[1];
-        a.textContent = s[0];
+        a.href = site[1];
+        a.textContent = site[0];
         a.target = "_blank";
         r.appendChild(a);
     });
