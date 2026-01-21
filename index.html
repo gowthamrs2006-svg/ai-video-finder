@@ -4,15 +4,22 @@
     <meta charset="UTF-8">
     <title>GM Video Finder AI</title>
 
+    <meta name="description" content="GM Video Finder AI helps you find videos from YouTube, Google, Instagram, Facebook, Hotstar and more using a single word.">
+    <meta name="keywords" content="GM Video Finder AI, video search, find videos online">
+    <meta name="author" content="GM">
+
     <style>
         body {
             font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
             text-align: center;
             padding: 40px;
-            background: #f4f4f4;
+        }
+        h1 {
+            margin-bottom: 10px;
         }
         input {
-            width: 280px;
+            width: 260px;
             padding: 10px;
             font-size: 16px;
         }
@@ -21,51 +28,58 @@
             font-size: 16px;
             cursor: pointer;
         }
-        #results a {
+        #results {
+            margin-top: 25px;
+        }
+        a {
             display: block;
-            margin: 10px;
-            font-size: 18px;
-            text-decoration: none;
+            margin: 6px 0;
             color: blue;
+            text-decoration: none;
+            font-size: 16px;
         }
     </style>
 </head>
 <body>
 
-<h1>GM Video Finder AI</h1>
+    <h1>GM Video Finder AI</h1>
+    <p>Type one word and find related videos</p>
 
-<input type="text" id="query" placeholder="Type any word">
-<button onclick="search()">Search</button>
+    <input type="text" id="query" placeholder="Enter any word">
+    <button onclick="search()">Search</button>
 
-<div id="results"></div>
+    <div id="results"></div>
 
-<script>
-function search() {
-    const q = document.getElementById("query").value.trim();
-    if (q === "") return;
+    <script>
+        function search() {
+            const q = document.getElementById("query").value.trim();
+            if (q === "") {
+                alert("Enter a word");
+                return;
+            }
 
-    const results = document.getElementById("results");
-    results.innerHTML = "";
+            const results = document.getElementById("results");
+            results.innerHTML = "";
 
-    const sites = [
-        { name: "YouTube", url: "https://www.youtube.com/results?search_query=" },
-        { name: "Google", url: "https://www.google.com/search?q=" },
-        { name: "Instagram", url: "https://www.instagram.com/explore/tags/" },
-        { name: "Facebook", url: "https://www.facebook.com/search/top/?q=" },
-        { name: "Vimeo", url: "https://vimeo.com/search?q=" },
-        { name: "Hotstar", url: "https://www.hotstar.com/in/search?q=" },
-        { name: "ShareChat", url: "https://sharechat.com/search?q=" }
-    ];
+            const sites = [
+                { name: "YouTube", link: "https://www.youtube.com/results?search_query=" + q + " video" },
+                { name: "Google", link: "https://www.google.com/search?q=" + q + " video" },
+                { name: "Vimeo", link: "https://vimeo.com/search?q=" + q + " video" },
+                { name: "Instagram", link: "https://www.instagram.com/explore/tags/" + q },
+                { name: "Facebook", link: "https://www.facebook.com/search/videos/?q=" + q },
+                { name: "Hotstar", link: "https://www.hotstar.com/in/search?q=" + q },
+                { name: "ShareChat", link: "https://sharechat.com/search?q=" + q }
+            ];
 
-    sites.forEach(site => {
-        const a = document.createElement("a");
-        a.href = site.url + encodeURIComponent(q);
-        a.target = "_blank";
-        a.textContent = site.name;
-        results.appendChild(a);
-    });
-}
-</script>
+            sites.forEach(site => {
+                const a = document.createElement("a");
+                a.href = site.link;
+                a.target = "_blank";
+                a.textContent = site.name;
+                results.appendChild(a);
+            });
+        }
+    </script>
 
 </body>
 </html>
