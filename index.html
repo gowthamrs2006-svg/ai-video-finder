@@ -2,61 +2,75 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>AI Video Finder</title>
+    <title>GM Video Finder AI</title>
+
+    <meta name="description" content="GM Video Finder AI helps you find all kinds of videos like movies, songs, educational and more using a single word search.">
+    <meta name="keywords" content="GM Video Finder AI, video finder ai, movie video finder, song video finder, search videos online">
+    <meta name="author" content="GM">
+
     <style>
         body {
             font-family: Arial, sans-serif;
-            background: #0f172a;
-            color: white;
+            background-color: #f4f4f4;
             text-align: center;
-            padding-top: 100px;
+            padding: 40px;
         }
         input {
             width: 300px;
-            padding: 12px;
+            padding: 10px;
             font-size: 16px;
-            border-radius: 6px;
-            border: none;
         }
         button {
-            padding: 12px 20px;
+            padding: 10px 15px;
             font-size: 16px;
-            border: none;
-            border-radius: 6px;
-            margin-left: 10px;
             cursor: pointer;
-            background: #22c55e;
         }
-        button:hover {
-            background: #16a34a;
-        }
-        p {
+        #results {
             margin-top: 20px;
-            color: #cbd5f5;
+        }
+        a {
+            display: block;
+            margin: 8px 0;
+            color: blue;
+            text-decoration: none;
         }
     </style>
 </head>
 <body>
 
-    <h1>AI Video Finder</h1>
-    <p>Type any word or name. AI will find related videos from entire web.</p>
+    <h1>GM Video Finder AI</h1>
+    <p>Type one word and find related videos from the web</p>
 
-    <input type="text" id="query" placeholder="Example: Leo movie, maths class">
-    <button onclick="findVideo()">Find Videos</button>
+    <input type="text" id="query" placeholder="Enter any word">
+    <button onclick="search()">Search</button>
+
+    <div id="results"></div>
 
     <script>
-        function findVideo() {
-            let q = document.getElementById("query").value;
-            if (q.trim() === "") {
-                alert("Type something");
+        function search() {
+            const q = document.getElementById("query").value.trim();
+            if (q === "") {
+                alert("Please enter a word");
                 return;
             }
 
-            let url = "https://www.google.com/search?q=" +
-                      encodeURIComponent(q + " video") +
-                      "&tbm=vid";
+            const results = document.getElementById("results");
+            results.innerHTML = "";
 
-            window.open(url, "_blank");
+            const sites = [
+                "https://www.youtube.com/results?search_query=",
+                "https://www.google.com/search?q=",
+                "https://vimeo.com/search?q="
+            ];
+
+            sites.forEach(site => {
+                const link = site + encodeURIComponent(q + " video");
+                const a = document.createElement("a");
+                a.href = link;
+                a.target = "_blank";
+                a.textContent = link;
+                results.appendChild(a);
+            });
         }
     </script>
 
