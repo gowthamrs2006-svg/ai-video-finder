@@ -1,3 +1,4 @@
+
 const CACHE_NAME = "gm-video-finder-v1";
 
 const FILES_TO_CACHE = [
