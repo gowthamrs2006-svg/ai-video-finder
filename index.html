@@ -4,49 +4,51 @@
 <meta charset="UTF-8">
 
 <!-- Google Search Console verification -->
-<meta name="google-site-verification" content="ZxgZ5Lb3gyZdngj" />
+<meta name="google-site-verification" content="ZXgZ5Lb3gyZdngj" />
 
 <title>GM Video Finder AI</title>
 
-<meta name="description" content="GM Video Finder AI helps you search one word and find related videos from YouTube, Instagram, Facebook, Hotstar and more.">
-<meta name="keywords" content="GM Video Finder AI, video finder, youtube search, instagram video search">
+<meta name="description" content="GM Video Finder AI helps you search one word and find related videos from YouTube, Instagram, Facebook and more.">
+<meta name="keywords" content="video finder, youtube search, instagram video finder">
 <meta name="author" content="GM">
 
-<!-- Open Graph -->
-<meta property="og:title" content="GM Video Finder AI">
-<meta property="og:description" content="Search one word and find videos from YouTube, Instagram, Facebook, Hotstar and more">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://gowthamrs2006-svg.github.io/ai-video-finder/">
-<meta property="og:image" content="https://gowthamrs2006-svg.github.io/ai-video-finder/preview.png">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <!-- PWA -->
 <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#000000">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
 body{
     font-family: Arial, sans-serif;
     text-align:center;
-    padding:40px;
+    padding:30px;
     background:#f5f5f5;
 }
 input{
-    padding:10px;
-    width:300px;
+    padding:12px;
+    width:90%;
+    max-width:320px;
     font-size:16px;
 }
 button{
-    padding:10px 15px;
+    padding:12px 18px;
     font-size:16px;
     cursor:pointer;
+    margin-top:10px;
 }
 a{
     display:block;
     margin:10px 0;
-    color:#0a58ca;
+    color:#0066ff;
     text-decoration:none;
     font-weight:bold;
+}
+.card{
+    background:#fff;
+    padding:20px;
+    margin-top:20px;
+    border-radius:10px;
 }
 </style>
 </head>
@@ -54,12 +56,22 @@ a{
 <body>
 
 <h1>GM Video Finder AI</h1>
-<p>Type one word and find related videos</p>
+<p>Type one word and find videos</p>
 
-<input id="query" placeholder="Type word">
+<input id="query" placeholder="Type video name">
+<br>
 <button onclick="search()">Search</button>
 
-<div id="results"></div>
+<div id="results" class="card"></div>
+
+<hr>
+
+<h3>⬇️ Video Download</h3>
+<p>Paste video link & download</p>
+
+<a href="https://videodownloader.com/" target="_blank">
+👉 Open Video Downloader
+</a>
 
 <script>
 function search(){
@@ -68,22 +80,20 @@ function search(){
 
     const e = encodeURIComponent(q);
     const r = document.getElementById("results");
-    r.innerHTML = "";
+    r.innerHTML = "<h3>Results</h3>";
 
     const sites = [
-        ["YouTube", "https://www.youtube.com/results?search_query=" + e],
-        ["Google Videos", "https://www.google.com/search?tbm=vid&q=" + e],
-        ["Vimeo", "https://vimeo.com/search?q=" + e],
-        ["Instagram", "https://www.instagram.com/explore/tags/" + e + "/"],
-        ["Facebook", "https://www.facebook.com/watch/search/?q=" + e],
-        ["ShareChat", "https://sharechat.com/search?q=" + e],
-        ["Hotstar", "https://www.hotstar.com/in/search?q=" + e]
+        ["YouTube", `https://www.youtube.com/results?search_query=${e}`],
+        ["Google Videos", `https://www.google.com/search?tbm=vid&q=${e}`],
+        ["Instagram", `https://www.instagram.com/explore/tags/${e}/`],
+        ["Facebook", `https://www.facebook.com/watch/search/?q=${e}`],
+        ["Vimeo", `https://vimeo.com/search?q=${e}`]
     ];
 
-    sites.forEach(site=>{
+    sites.forEach(s=>{
         const a = document.createElement("a");
-        a.href = site[1];
-        a.textContent = site[0];
+        a.href = s[1];
+        a.textContent = s[0];
         a.target = "_blank";
         r.appendChild(a);
     });
@@ -93,7 +103,7 @@ function search(){
 <!-- Service Worker -->
 <script>
 if ("serviceWorker" in navigator) {
-    navigator.serviceWorker.register("service-worker.js");
+  navigator.serviceWorker.register("service-worker.js");
 }
 </script>
 
