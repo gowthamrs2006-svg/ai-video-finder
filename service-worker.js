@@ -1,12 +1,11 @@
-
-const CACHE_NAME = "gm-video-finder-v1";
+const CACHE_NAME = "gm-video-finder-v2";
 
 const FILES_TO_CACHE = [
   "./",
   "./index.html",
   "./manifest.json",
-  "./icon-192.png",
-  "./icon-512.png"
+  "./gm-icon.svg",
+  "./service-worker.js"
 ];
 
 // Install
