@@ -2,40 +2,35 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-
-<meta name="google-site-verification" content="ZXgZ5Lb3gyZdngj" />
-
-<title>GM Video Finder AI</title>
-
-<meta name="description" content="GM Video Finder AI helps you search one word and find related videos">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<title>GM Video Finder AI</title>
+<meta name="description" content="Search one word and find videos from multiple platforms">
+
 <link rel="manifest" href="manifest.json">
-<meta name="theme-color" content="#000000">
+<meta name="theme-color" content="#111111">
 
 <style>
 body{
-    font-family: Arial, sans-serif;
-    text-align:center;
-    padding:40px;
-    background:#f5f5f5;
+  font-family: Arial, sans-serif;
+  text-align:center;
+  background:#f2f2f2;
+  padding:40px;
 }
 input{
-    padding:10px;
-    width:300px;
-    font-size:16px;
+  padding:10px;
+  width:260px;
 }
 button{
-    padding:10px 15px;
-    font-size:16px;
-    cursor:pointer;
+  padding:10px 16px;
+  cursor:pointer;
 }
 a{
-    display:block;
-    margin:8px 0;
-    color:blue;
-    text-decoration:none;
-    font-weight:bold;
+  display:block;
+  margin:8px;
+  font-size:18px;
+  color:#0066cc;
+  text-decoration:none;
 }
 </style>
 </head>
@@ -52,31 +47,32 @@ a{
 
 <script>
 function search(){
-    const q = document.getElementById("query").value.trim();
-    if(q === "") return;
+  const q = document.getElementById("query").value.trim();
+  if(q === "") return;
 
-    const e = encodeURIComponent(q);
-    const r = document.getElementById("results");
-    r.innerHTML = "";
+  const e = encodeURIComponent(q);
+  const r = document.getElementById("results");
+  r.innerHTML = "";
 
-    const sites = [
-        ["YouTube", "https://www.youtube.com/results?search_query=" + e],
-        ["Instagram", "https://www.instagram.com/explore/tags/" + e + "/"],
-        ["Facebook", "https://www.facebook.com/watch/search/?q=" + e],
-        ["ShareChat", "https://www.google.com/search?q=site:sharechat.com+" + e]
-    ];
+  const links = [
+    {name:"YouTube", url:"https://www.youtube.com/results?search_query="+e},
+    {name:"Instagram", url:"https://www.instagram.com/explore/search/keyword/?q="+e},
+    {name:"Facebook", url:"https://www.facebook.com/watch/search/?q="+e},
+    {name:"ShareChat", url:"https://www.google.com/search?q=site:sharechat.com+"+e},
+    {name:"Google Videos", url:"https://www.google.com/search?tbm=vid&q="+e}
+  ];
 
-    sites.forEach(s=>{
-        const a = document.createElement("a");
-        a.href = s[1];
-        a.textContent = s[0];
-        a.target = "_blank";
-        r.appendChild(a);
-    });
+  links.forEach(l=>{
+    const a = document.createElement("a");
+    a.href = l.url;
+    a.target = "_blank";
+    a.textContent = l.name;
+    r.appendChild(a);
+  });
 }
 
 if ("serviceWorker" in navigator) {
-    navigator.serviceWorker.register("service-worker.js");
+  navigator.serviceWorker.register("service-worker.js");
 }
 </script>
 
