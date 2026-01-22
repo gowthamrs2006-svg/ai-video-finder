@@ -7,14 +7,9 @@
   "theme_color": "#111111",
   "icons": [
     {
-      "src": "png-7.png",
-      "sizes": "192x192",
-      "type": "image/png"
-    },
-    {
-      "src": "png-7.png",
-      "sizes": "512x512",
-      "type": "image/png"
+      "src": "gm-icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
     }
   ]
 }
