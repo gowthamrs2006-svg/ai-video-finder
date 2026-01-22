@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>GM Video Finder AI</title>
+  <meta name="description" content="Search one word and find videos from multiple platforms">
+
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="gm-icon-192.png" type="image/png">
+  <meta name="theme-color" content="#111111" id="themeColorMeta">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="splash.css">
+</head>
+
+<body>
+
+  <!-- Opening Animation (Splash Screen) -->
+  <div id="splash" class="splashScreen">
+    <div class="splashContent">
+      <img src="gm-icon-192.png" alt="GM Logo" class="splashLogo">
+      <h1 class="splashTitle">GM Video Finder AI</h1>
+      <div class="splashLoader"></div>
+      <div class="splashText">Initializing Experience...</div>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <div class="topbar">
+      <div class="brand">
+        <img src="gm-icon-192.png" alt="GM Logo" class="logo"
+          style="background:none; box-shadow:none; border:none; padding:0;">
+        <div>
+          <h1>GM Video Finder AI</h1>
+          <p class="subtitle">Search once. Jump to videos across your favorite platforms.</p>
+        </div>
+      </div>
+      <div class="toolbar">
+        <button class="btn" id="themeToggle" type="button" title="Toggle theme">Theme</button>
+        <button class="btn" id="shareBtn" type="button" title="Copy a shareable link">Share</button>
+      </div>
+    </div>
+
+    <div class="card" role="search" aria-label="Search">
+      <div class="searchRow">
+        <input class="input" id="query" placeholder="Type a keyword (e.g., cricket, cooking, AI)" autocomplete="off"
+          inputmode="search">
+        <button class="btn primary" id="searchBtn" type="button">Search</button>
+        <button class="btn" id="clearBtn" type="button">Clear</button>
+      </div>
+
+      <div class="hint">
+        <span>Tip: press <span class="kbd">Enter</span> to search.</span>
+        <div class="chips" id="recentChips" aria-label="Recent searches"></div>
+      </div>
+    </div>
+
+    <div class="card controls" aria-label="Filters and controls">
+      <div class="row">
+        <div class="field">
+          <div class="label">Category</div>
+          <div class="chips" id="categoryChips" aria-label="Category filters"></div>
+        </div>
+        <div class="field">
+          <div class="label">Language</div>
+          <div class="chips" id="languageChips" aria-label="Language filters"></div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="field">
+          <div class="label">Trending India</div>
+          <div class="chips" id="trendingChips" aria-label="Trending India shortcuts"></div>
+        </div>
+        <div class="field right">
+          <label class="switch" title="Advanced Mode: allow opening more than 8 tabs">
+            <input id="advancedToggle" type="checkbox">
+            <span class="slider"></span>
+            <span class="switchLabel">Advanced Mode</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="row actions">
+        <button class="btn" id="selectAllBtn" type="button">Select All</button>
+        <button class="btn" id="selectNoneBtn" type="button">Select None</button>
+        <button class="btn primary" id="openSelectedBtn" type="button">Open Selected (max 8)</button>
+        <span class="muted" id="selectionInfo"></span>
+      </div>
+    </div>
+
+    <div class="sectionTitle">
+      <h2>Platforms</h2>
+      <span class="muted" id="platformCount"></span>
+    </div>
+
+    <div class="platformGrid" id="platformGrid" aria-live="polite"></div>
+
+    <div class="sectionTitle">
+      <h2>Results</h2>
+      <span class="muted" id="resultsHint"></span>
+    </div>
+
+    <div class="grid" id="results" aria-live="polite"></div>
+
+    <div class="footer">
+      <span>Opens results in new tabs (safe links only).</span>
+      <span id="swStatus"></span>
+    </div>
+  </div>
+
+  <div class="loadingOverlay" id="loadingOverlay" hidden>
+    <div class="loadingCard">
+      <div class="spinner" aria-hidden="true"></div>
+      <div>
+        <div class="loadingTitle">Searching India’s top platforms…</div>
+        <div class="loadingSub">Building safe search links</div>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js" defer></script>
+
+</body>
+
+</html>
