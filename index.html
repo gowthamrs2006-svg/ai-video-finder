@@ -3,23 +3,15 @@
 <head>
 <meta charset="UTF-8">
 
-<!-- Google Search Console verification -->
 <meta name="google-site-verification" content="ZXgZ5Lb3gyZdngj" />
 
 <title>GM Video Finder AI</title>
 
-<meta name="description" content="GM Video Finder AI helps you search one word and find related videos from YouTube, Instagram, Facebook, Hotstar and more.">
-<meta name="keywords" content="GM Video Finder AI, video finder, youtube search, instagram video search">
-<meta name="author" content="GM">
-
-<!-- Open Graph -->
-<meta property="og:title" content="GM Video Finder AI">
-<meta property="og:description" content="Search one word and find videos from YouTube, Instagram, Facebook, Hotstar and more">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://gowthamrs2006-svg.github.io/ai-video-finder/">
-<meta property="og:image" content="https://gowthamrs2006-svg.github.io/ai-video-finder/preview.png">
-
+<meta name="description" content="GM Video Finder AI helps you search one word and find related videos">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#000000">
 
 <style>
 body{
@@ -69,21 +61,22 @@ function search(){
 
     const sites = [
         ["YouTube", "https://www.youtube.com/results?search_query=" + e],
-        ["Google Videos", "https://www.google.com/search?tbm=vid&q=" + e],
-        ["Vimeo", "https://vimeo.com/search?q=" + e],
         ["Instagram", "https://www.instagram.com/explore/tags/" + e + "/"],
         ["Facebook", "https://www.facebook.com/watch/search/?q=" + e],
-        ["ShareChat", "https://www.google.com/search?q=site:sharechat.com+" + e],
-        ["Hotstar", "https://www.hotstar.com/in/search?q=" + e]
+        ["ShareChat", "https://www.google.com/search?q=site:sharechat.com+" + e]
     ];
 
-    sites.forEach(function(s){
+    sites.forEach(s=>{
         const a = document.createElement("a");
         a.href = s[1];
         a.textContent = s[0];
         a.target = "_blank";
         r.appendChild(a);
     });
+}
+
+if ("serviceWorker" in navigator) {
+    navigator.serviceWorker.register("service-worker.js");
 }
 </script>
 
