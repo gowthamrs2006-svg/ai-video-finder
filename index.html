@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 
-<!-- Google Search Console verification (FIXED) -->
+<!-- Google Search Console verification -->
 <meta name="google-site-verification" content="ZxgZ5Lb3gyZdngj" />
 
 <title>GM Video Finder AI</title>
@@ -19,6 +19,9 @@
 <meta property="og:url" content="https://gowthamrs2006-svg.github.io/ai-video-finder/">
 <meta property="og:image" content="https://gowthamrs2006-svg.github.io/ai-video-finder/preview.png">
 
+<!-- PWA -->
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#000000">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
@@ -40,8 +43,8 @@ button{
 }
 a{
     display:block;
-    margin:8px 0;
-    color:blue;
+    margin:10px 0;
+    color:#0a58ca;
     text-decoration:none;
     font-weight:bold;
 }
@@ -77,13 +80,20 @@ function search(){
         ["Hotstar", "https://www.hotstar.com/in/search?q=" + e]
     ];
 
-    sites.forEach(function(site){
+    sites.forEach(site=>{
         const a = document.createElement("a");
         a.href = site[1];
         a.textContent = site[0];
         a.target = "_blank";
         r.appendChild(a);
     });
+}
+</script>
+
+<!-- Service Worker -->
+<script>
+if ("serviceWorker" in navigator) {
+    navigator.serviceWorker.register("service-worker.js");
 }
 </script>
 
