@@ -8,47 +8,42 @@
 
 <title>GM Video Finder AI</title>
 
-<meta name="description" content="GM Video Finder AI helps you search one word and find related videos from YouTube, Instagram, Facebook and more.">
-<meta name="keywords" content="video finder, youtube search, instagram video finder">
+<meta name="description" content="GM Video Finder AI helps you search one word and find related videos from YouTube, Instagram, Facebook, Hotstar and more.">
+<meta name="keywords" content="GM Video Finder AI, video finder, youtube search, instagram video search">
 <meta name="author" content="GM">
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- Open Graph -->
+<meta property="og:title" content="GM Video Finder AI">
+<meta property="og:description" content="Search one word and find videos from YouTube, Instagram, Facebook, Hotstar and more">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://gowthamrs2006-svg.github.io/ai-video-finder/">
+<meta property="og:image" content="https://gowthamrs2006-svg.github.io/ai-video-finder/preview.png">
 
-<!-- PWA -->
-<link rel="manifest" href="manifest.json">
-<meta name="theme-color" content="#000000">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
 body{
     font-family: Arial, sans-serif;
     text-align:center;
-    padding:30px;
+    padding:40px;
     background:#f5f5f5;
 }
 input{
-    padding:12px;
-    width:90%;
-    max-width:320px;
+    padding:10px;
+    width:300px;
     font-size:16px;
 }
 button{
-    padding:12px 18px;
+    padding:10px 15px;
     font-size:16px;
     cursor:pointer;
-    margin-top:10px;
 }
 a{
     display:block;
-    margin:10px 0;
-    color:#0066ff;
+    margin:8px 0;
+    color:blue;
     text-decoration:none;
     font-weight:bold;
-}
-.card{
-    background:#fff;
-    padding:20px;
-    margin-top:20px;
-    border-radius:10px;
 }
 </style>
 </head>
@@ -56,22 +51,12 @@ a{
 <body>
 
 <h1>GM Video Finder AI</h1>
-<p>Type one word and find videos</p>
+<p>Type one word and find related videos</p>
 
-<input id="query" placeholder="Type video name">
-<br>
+<input id="query" placeholder="Type word">
 <button onclick="search()">Search</button>
 
-<div id="results" class="card"></div>
-
-<hr>
-
-<h3>⬇️ Video Download</h3>
-<p>Paste video link & download</p>
-
-<a href="https://videodownloader.com/" target="_blank">
-👉 Open Video Downloader
-</a>
+<div id="results"></div>
 
 <script>
 function search(){
@@ -80,30 +65,25 @@ function search(){
 
     const e = encodeURIComponent(q);
     const r = document.getElementById("results");
-    r.innerHTML = "<h3>Results</h3>";
+    r.innerHTML = "";
 
     const sites = [
-        ["YouTube", `https://www.youtube.com/results?search_query=${e}`],
-        ["Google Videos", `https://www.google.com/search?tbm=vid&q=${e}`],
-        ["Instagram", `https://www.instagram.com/explore/tags/${e}/`],
-        ["Facebook", `https://www.facebook.com/watch/search/?q=${e}`],
-        ["Vimeo", `https://vimeo.com/search?q=${e}`]
+        ["YouTube", "https://www.youtube.com/results?search_query=" + e],
+        ["Google Videos", "https://www.google.com/search?tbm=vid&q=" + e],
+        ["Vimeo", "https://vimeo.com/search?q=" + e],
+        ["Instagram", "https://www.instagram.com/explore/tags/" + e + "/"],
+        ["Facebook", "https://www.facebook.com/watch/search/?q=" + e],
+        ["ShareChat", "https://www.google.com/search?q=site:sharechat.com+" + e],
+        ["Hotstar", "https://www.hotstar.com/in/search?q=" + e]
     ];
 
-    sites.forEach(s=>{
+    sites.forEach(function(s){
         const a = document.createElement("a");
         a.href = s[1];
         a.textContent = s[0];
         a.target = "_blank";
         r.appendChild(a);
     });
-}
-</script>
-
-<!-- Service Worker -->
-<script>
-if ("serviceWorker" in navigator) {
-  navigator.serviceWorker.register("service-worker.js");
 }
 </script>
 
