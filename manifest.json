@@ -1,10 +1,10 @@
 {
   "name": "GM Video Finder AI",
-  "short_name": "GM Video Finder",
-  "start_url": "/ai-video-finder/",
+  "short_name": "GM Finder",
+  "start_url": "./index.html",
   "display": "standalone",
-  "background_color": "#ffffff",
-  "theme_color": "#ffffff",
+  "background_color": "#111111",
+  "theme_color": "#111111",
   "icons": [
     {
       "src": "icon-192.png",
